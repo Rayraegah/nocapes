@@ -1,0 +1,71 @@
+{
+	"name": "nocapes",
+	"version": "0.0.1",
+	"description": "Another vdom library, because why not?",
+	"main": "dist/nocapes.js",
+	"jsnext:main": "src/main.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/rayraegah/nocapes.git"
+	},
+	"keywords": ["vdom", "javascript", "library", "web-views"],
+	"author": "Rayraegah",
+	"license": "BSD-3-Clause",
+	"bugs": {
+		"url": "https://github.com/rayraegah/nocapes/issues"
+	},
+	"homepage": "https://github.com/rayraegah/nocapes#readme",
+	"scripts": {
+		"test": "jest",
+		"report": "codecov",
+		"lint": "eslint src/**/*.js",
+		"pretty": "prettier --write 'src/**/*.js'",
+		"verify": "npm run pretty && npm run lint && npm run test",
+		"bundle": "rollup -c",
+		"build": "npm run verify && npm run bundle",
+		"preversion": "npm run build && npm run report",
+		"postversion": "git push && git push --tags && npm run publish"
+	},
+	"babel": {
+		"presets": "env"
+	},
+	"prettier": {
+		"useTabs": true,
+		"printWidth": 80,
+		"tabWidth": 4,
+		"singleQuote": false,
+		"trailingComma": "none",
+		"jsxBracketSameLine": false,
+		"semi": true
+	},
+	"eslintConfig": {
+		"extends": "eslint:recommended",
+		"env": {
+			"es6": true,
+			"browser": true,
+			"jest": true
+		},
+		"parserOptions": {
+			"ecmaVersion": 6,
+			"sourceType": "module",
+			"ecmaFeatures": {
+				"jsx": true
+			}
+		}
+	},
+	"jest": {
+		"coverageDirectory": "./coverage/",
+		"collectCoverage": true
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"babel-preset-env": "^1.6.1",
+		"codecov": "^3.0.0",
+		"eslint": "^4.11.0",
+		"jest": "^21.2.1",
+		"prettier": "^1.8.2",
+		"rollup": "^0.51.5",
+		"rollup-plugin-uglify": "^2.0.1",
+		"uglify-es": "^3.1.9"
+	}
+}
