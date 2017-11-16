@@ -1,6 +1,6 @@
 {
 	"name": "nocapes",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "Another vdom library, because why not?",
 	"main": "dist/nocapes.js",
 	"jsnext:main": "src/main.js",
