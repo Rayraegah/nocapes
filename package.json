@@ -10,10 +10,7 @@
 		"type": "git",
 		"url": "git+https://github.com/rayraegah/nocapes.git"
 	},
-	"keywords": [
-		"vdom-library",
-		"javascript"
-	],
+	"keywords": ["vdom-library", "javascript"],
 	"author": "Rayraegah",
 	"license": "BSD-3-Clause",
 	"bugs": {
@@ -26,8 +23,10 @@
 		"bundle": "rollup -c",
 		"pretty": "prettier --write 'src/**/*.js'",
 		"build": "npm run test && npm run bundle",
-		"preversion": "npm run build",
-		"postversion": "git push && git push --tags && npm publish"
+		"prepare": "npm run bundle",
+		"preversion": "npm run test",
+		"version": "npm run bundle",
+		"postversion": "git push && git push --tags"
 	},
 	"babel": {
 		"presets": "env"
