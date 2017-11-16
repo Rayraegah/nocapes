@@ -1,6 +1,6 @@
 {
 	"name": "nocapes",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "A vdom library without capes!",
 	"main": "dist/nocapes.cjs.js",
 	"module": "dist/nocapes.es.js",
@@ -10,7 +10,10 @@
 		"type": "git",
 		"url": "git+https://github.com/rayraegah/nocapes.git"
 	},
-	"keywords": ["vdom-library", "javascript"],
+	"keywords": [
+		"vdom-library",
+		"javascript"
+	],
 	"author": "Rayraegah",
 	"license": "BSD-3-Clause",
 	"bugs": {
