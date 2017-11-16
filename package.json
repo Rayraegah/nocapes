@@ -1,18 +1,18 @@
 {
 	"name": "nocapes",
 	"version": "1.0.0",
-	"description": "Another vdom library, because why not?",
-	"main": "dist/nocapes.js",
-	"jsnext:main": "src/main.js",
+	"description": "A vdom library without capes!",
+	"main": "dist/nocapes.cjs.js",
+	"module": "dist/nocapes.es.js",
+	"unpkg": "dist/nocapes.min.js",
+	"sourcemap": true,
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/rayraegah/nocapes.git"
 	},
 	"keywords": [
-		"vdom",
-		"javascript",
-		"library",
-		"web-views"
+		"vdom-library",
+		"javascript"
 	],
 	"author": "Rayraegah",
 	"license": "BSD-3-Clause",
@@ -22,14 +22,12 @@
 	"homepage": "https://github.com/rayraegah/nocapes#readme",
 	"scripts": {
 		"test": "jest",
-		"report": "codecov",
-		"lint": "eslint src/**/*.js",
-		"pretty": "prettier --write 'src/**/*.js'",
-		"verify": "npm run pretty && npm run lint && npm run test",
+		"codecov": "codecov",
 		"bundle": "rollup -c",
-		"build": "npm run verify && npm run bundle",
-		"preversion": "npm run build && npm run report",
-		"postversion": "git push && git push --tags && npm run publish"
+		"pretty": "prettier --write 'src/**/*.js'",
+		"build": "npm run test && npm run bundle",
+		"preversion": "npm run build",
+		"postversion": "git push && git push --tags && npm publish"
 	},
 	"babel": {
 		"presets": "env"
@@ -62,15 +60,10 @@
 		"coverageDirectory": "./coverage/",
 		"collectCoverage": true
 	},
-	"dependencies": {},
 	"devDependencies": {
 		"babel-preset-env": "^1.6.1",
-		"codecov": "^3.0.0",
-		"eslint": "^4.11.0",
 		"jest": "^21.2.1",
-		"prettier": "^1.8.2",
 		"rollup": "^0.51.5",
-		"rollup-plugin-uglify": "^2.0.1",
-		"uglify-es": "^3.1.9"
+		"rollup-plugin-butternut": "^0.1.0"
 	}
 }

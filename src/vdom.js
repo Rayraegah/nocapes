@@ -2,15 +2,7 @@ import { merge, getKey } from "./utils";
 
 const lifecycle = [];
 
-export function patch(parent, oldNode, newNode) {
-	const element = patchElement(parent, parent.children[0], oldNode, newNode);
-
-	for (let next; (next = lifecycle.pop()); next()) {}
-
-	return element;
-}
-
-function createElement(node, isSVG) {
+const createElement = (node, isSVG) => {
 	let element = void 0;
 	if (typeof node === "string") {
 		element = document.createTextNode(node);
@@ -34,38 +26,33 @@ function createElement(node, isSVG) {
 		}
 	}
 	return element;
-}
+};
 
-function setElementProp(element, name, value, oldValue) {
+const setElementProp = (element, name, value, oldValue) => {
 	if (name === "key") {
+		return;
 	} else if (name === "style") {
 		for (let name in merge(oldValue, (value = value || {}))) {
 			element.style[name] = value[name] != null ? value[name] : "";
 		}
 	} else {
 		try {
-			element[name] = null == value ? "" : value; // element[name] = value;
-		} catch (err) {}
+			element[name] = null == value ? "" : value;
+		} catch (err) {
+			// don't crash; ignore messages
+		}
 
 		if (typeof value !== "function") {
-			if (
-				/*
-				!value &&
-				typeof value !== "string" &&
-				typeof value !== "number"
-			*/
-				null == value ||
-				value === false
-			) {
+			if (null == value || value === false) {
 				element.removeAttribute(name);
 			} else {
 				element.setAttribute(name, value);
 			}
 		}
 	}
-}
+};
 
-function updateElement(element, oldProps, props) {
+const updateElement = (element, oldProps, props) => {
 	for (const i in merge(oldProps, props)) {
 		const value = props[i];
 		const oldValue =
@@ -81,9 +68,13 @@ function updateElement(element, oldProps, props) {
 			props.onupdate(element, oldProps);
 		});
 	}
-}
+};
 
-function removeElement(parent, element, props) {
+const removeElement = (parent, element, props) => {
+	const remove = () => {
+		parent.removeChild(element);
+	};
+
 	if (
 		props &&
 		props.onremove &&
@@ -93,13 +84,9 @@ function removeElement(parent, element, props) {
 	} else {
 		remove();
 	}
+};
 
-	function remove() {
-		parent.removeChild(element);
-	}
-}
-
-function patchElement(parent, element, oldNode, node, isSVG, nextSibling) {
+const patchElement = (parent, element, oldNode, node, isSVG, nextSibling) => {
 	if (oldNode == null) {
 		element = parent.insertBefore(createElement(node, isSVG), element);
 	} else if (node.type != null && node.type === oldNode.type) {
@@ -208,4 +195,14 @@ function patchElement(parent, element, oldNode, node, isSVG, nextSibling) {
 		}
 	}
 	return element;
-}
+};
+
+export const patch = (parent, oldNode, newNode) => {
+	const element = patchElement(parent, parent.children[0], oldNode, newNode);
+
+	for (let next; (next = lifecycle.pop()); next()) {
+		// keep calm and carry on
+	}
+
+	return element;
+};

@@ -7,7 +7,7 @@ jobs:
       # use latest version of node
       - image: circleci/node:latest
 
-    working_directory: ~/repo
+    working_directory: ~/nocapes
 
     steps:
       - checkout
@@ -19,7 +19,12 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
+      # install project dependencies
       - run: npm install
+
+      # install codecov module
+      # codecov is no longer part of standard dependencies
+      - run: npm install codecov
 
       - save_cache:
           paths:
@@ -29,5 +34,10 @@ jobs:
       # run tests!
       - run: npm test
 
-      # report code coverage
-      - run: npm run report
+      # upload code coverage
+      - run: npm run codecov
+
+      # run bundle script
+      # TODO set up npm demployment
+      # TODO set up unpkg publish
+      - run: npm run bundle

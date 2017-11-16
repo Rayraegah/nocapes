@@ -1,25 +1,24 @@
-import uglify from "rollup-plugin-uglify";
-import { minify } from "uglify-es";
-
-const libname = "nocapes";
+import butternut from "rollup-plugin-butternut";
+const pkg = require("./package.json");
 
 export default {
-	name: `${libname}`,
+	name: pkg.name,
 	input: "src/main.js",
-	output: {
-		file: `dist/${libname}.js`,
-		format: "umd"
-	},
-	plugins: [
-		uglify(
-			{
-				compress: {
-					pure_funcs: ["Object.defineProperty"]
-				},
-				mangle: true,
-				toplevel: true
-			},
-			minify
-		)
-	]
+	output: [
+		{
+			file: pkg.main,
+			format: "cjs",
+			sourcemap: pkg.sourcemap
+		},
+		{
+			file: pkg.module,
+			format: "es",
+			sourcemap: pkg.sourcemap
+		},
+		{
+			file: pkg.unpkg,
+			format: "umd"
+		}
+	],
+	plugins: [butternut()]
 };
