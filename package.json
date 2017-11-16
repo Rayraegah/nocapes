@@ -8,7 +8,12 @@
 		"type": "git",
 		"url": "git+https://github.com/rayraegah/nocapes.git"
 	},
-	"keywords": ["vdom", "javascript", "library", "web-views"],
+	"keywords": [
+		"vdom",
+		"javascript",
+		"library",
+		"web-views"
+	],
 	"author": "Rayraegah",
 	"license": "BSD-3-Clause",
 	"bugs": {
