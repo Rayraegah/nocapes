@@ -662,15 +662,23 @@ testTrees("update element with dynamic props", [
 	}
 ]);
 
-testTrees("elements with falsy values", [
+testTrees("elements with true values", [
 	{
 		node: h("input", {
 			type: "text",
-			value: "",
 			readonly: ""
 		}),
-		html: `<input type="text" value="" readonly="">`
+		html: `<input type="text" readonly="">`
 	},
+	{
+		node: h("input", {
+			type: "text",
+			disabled: true
+		}),
+		html: `<input type="text" disabled="">`
+	}
+]);
+testTrees("elements with falsy values", [
 	{
 		node: h("input", {
 			type: "text",
