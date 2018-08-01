@@ -10,10 +10,7 @@
 		"type": "git",
 		"url": "git+https://github.com/rayraegah/nocapes.git"
 	},
-	"keywords": [
-		"vdom-library",
-		"javascript"
-	],
+	"keywords": ["vdom-library", "javascript"],
 	"author": "Rayraegah",
 	"license": "BSD-3-Clause",
 	"bugs": {
@@ -60,12 +57,13 @@
 	},
 	"jest": {
 		"coverageDirectory": "./coverage/",
-		"collectCoverage": true
+		"collectCoverage": true,
+		"testURL": "http://localhost"
 	},
 	"devDependencies": {
-		"babel-preset-env": "^1.6.1",
-		"jest": "^21.2.1",
-		"rollup": "^0.51.5",
+		"babel-preset-env": "^1.7.0",
+		"jest": "^23.4.2",
+		"rollup": "^0.63.5",
 		"rollup-plugin-butternut": "^0.1.0"
 	}
 }

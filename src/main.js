@@ -1,2 +1,2 @@
-export { h } from "./h";
+export { h, recycle } from "./h";
 export { patch } from "./vdom";
